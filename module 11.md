@@ -12,10 +12,30 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+    
+    #include <stdio.h>
+    
+    int findGreatest(int arr[], int n) {
+        int max = arr[0];
+        for (int i = 1; i < n; i++)
+            if (arr[i] > max)
+                max = arr[i];
+        return max;
+    }
+    
+    int main() {
+        int arr[] = {12, 45, 7, 89, 34};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        int greatest = findGreatest(arr, n);
+        printf("Greatest number: %d\n", greatest);
+        return 0;
+    }
+
 
 Output:
-//paste your output here
+
+    Greatest number: 89
+
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,10 +56,39 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+
+    #include <stdio.h>
+    
+    void findMaxBitwise(int arr[], int n) {
+        int maxAND = 0, maxOR = 0, maxXOR = 0;
+    
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                int a = arr[i], b = arr[j];
+                if ((a & b) > maxAND) maxAND = a & b;
+                if ((a | b) > maxOR)  maxOR  = a | b;
+                if ((a ^ b) > maxXOR) maxXOR = a ^ b;
+            }
+    
+        printf("Max AND: %d\n", maxAND);
+        printf("Max OR : %d\n", maxOR);
+        printf("Max XOR: %d\n", maxXOR);
+    }
+    
+    int main() {
+        int arr[] = {5, 10, 15, 20};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        findMaxBitwise(arr, n);
+        return 0;
+    }
+    
 
 Output:
-//paste your output here
+
+    Max AND: 12
+    Max OR : 31
+    Max XOR: 31
+
 
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
@@ -59,10 +108,108 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    void findGreatest(int arr[], int n) {
+        int max = arr[0];
+        for (int i = 1; i < n; i++)
+            if (arr[i] > max)
+                max = arr[i];
+        printf("Greatest number: %d\n", max);
+    }
+    
+    void findMaxBitwise(int arr[], int n) {
+        int maxAND = 0, maxOR = 0, maxXOR = 0;
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j < n; j++) {
+                int a = arr[i], b = arr[j];
+                if ((a & b) > maxAND) maxAND = a & b;
+                if ((a | b) > maxOR)  maxOR  = a | b;
+                if ((a ^ b) > maxXOR) maxXOR = a ^ b;
+            }
+        printf("Max AND: %d\n", maxAND);
+        printf("Max OR : %d\n", maxOR);
+        printf("Max XOR: %d\n", maxXOR);
+    }
+    
+    struct Node {
+        int data;
+        struct Node *next;
+    };
+    
+    void insertEnd(struct Node **head, int value) {
+        struct Node *newNode = malloc(sizeof(struct Node));
+        newNode->data = value; newNode->next = NULL;
+        if (!*head) *head = newNode;
+        else {
+            struct Node *temp = *head;
+            while (temp->next) temp = temp->next;
+            temp->next = newNode;
+        }
+    }
+    
+    void displayLinkedList(struct Node *head) {
+        printf("Linked List: ");
+        while (head) {
+            printf("%d ", head->data);
+            head = head->next;
+        }
+        printf("\n");
+    }
+    
+    int main() {
+        int choice;
+        int arr[] = {5, 10, 15, 20};
+        int n = sizeof(arr) / sizeof(arr[0]);
+        struct Node *head = NULL;
+    
+        printf("Select an option:\n");
+        printf("1. Find Greatest Number\n");
+        printf("2. Max AND, OR, XOR\n");
+        printf("3. Insert into Linked List\n");
+        printf("4. Display Linked List\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+    
+        switch (choice) {
+            case 1:
+                findGreatest(arr, n);
+                break;
+            case 2:
+                findMaxBitwise(arr, n);
+                break;
+            case 3: {
+                int value;
+                printf("Enter value to insert into linked list: ");
+                scanf("%d", &value);
+                insertEnd(&head, value);
+                break;
+            }
+            case 4:
+                displayLinkedList(head);
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+        
+        return 0;
+    }
+
 
 Output:
-//paste your output here
+
+    Select an option:
+    1. Find Greatest Number
+    2. Max AND, OR, XOR
+    3. Insert into Linked List
+    4. Display Linked List
+    Enter choice: 2
+    Max AND: 12
+    Max OR : 31
+    Max XOR: 31
 
 
 Result:
@@ -86,10 +233,30 @@ Algorithm:
 
 
 Program:
-//type your code here
+
+    #include <stdio.h>
+    
+    int calculateSum(int arr[], int n) {
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+    
+    int main() {
+        int arr[] = {1, 2, 3, 4, 5};  // Example array
+        int n = sizeof(arr) / sizeof(arr[0]);  // Size of the array
+        int sum = calculateSum(arr, n);
+        printf("Sum of the array elements: %d\n", sum);
+        return 0;
+    }
+
 
 Output:
-//paste your output here
+
+
+    Sum of the array elements: 15
 
  
 
@@ -120,10 +287,47 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+
+    #include <stdio.h>
+    #include <ctype.h>
+    
+    int countWords(char str[]) {
+        int count = 0, i = 0;
+    
+        // Skip leading spaces
+        while (str[i] && isspace(str[i])) {
+            i++;
+        }
+    
+        // Count words
+        while (str[i]) {
+            if (!isspace(str[i]) && (i == 0 || isspace(str[i - 1]))) {
+                count++;
+            }
+            i++;
+        }
+    
+        return count;
+    }
+    
+    int main() {
+        char sentence[100];
+    
+        printf("Enter a sentence: ");
+        fgets(sentence, sizeof(sentence), stdin);  
+    
+        int wordCount = countWords(sentence);
+        printf("Number of words: %d\n", wordCount);
+    
+        return 0;
+    }
+
 
 Output:
-//paste your output here
+
+    Enter a sentence: Hello, how are you?
+    Number of words: 4
+
 
 
 
