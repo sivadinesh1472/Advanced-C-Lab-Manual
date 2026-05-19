@@ -15,11 +15,83 @@ Algorithm:
  
 Program:
 
-//type your code here
+    
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    struct Stack {
+        struct Node* top;
+    };
+    
+    void initStack(struct Stack* stack) {
+        stack->top = NULL;
+    }
+    int isEmpty(struct Stack* stack) {
+        return stack->top == NULL;
+    }
+    
+    void push(struct Stack* stack, int value) {
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = value;
+        newNode->next = stack->top;
+        stack->top = newNode;
+    }
+    
+    int pop(struct Stack* stack) {
+        if (isEmpty(stack)) {
+            printf("Stack underflow\n");
+            return -1;  
+        }
+        struct Node* temp = stack->top;
+        int poppedValue = temp->data;
+        stack->top = temp->next;
+        free(temp);
+        return poppedValue;
+    }
+    
+    void display(struct Stack* stack) {
+        if (isEmpty(stack)) {
+            printf("Stack is empty\n");
+            return;
+        }
+        struct Node* current = stack->top;
+        printf("Stack elements: ");
+        while (current) {
+            printf("%d ", current->data);
+            current = current->next;
+        }
+        printf("\n");
+    }
+    
+    int main() {
+        struct Stack stack;
+        initStack(&stack);
+    
+        push(&stack, 10);
+        push(&stack, 20);
+        push(&stack, 30);
+        push(&stack, 40);
+        
+        display(&stack); 
+    
+        printf("Popped: %d\n", pop(&stack));  
+        display(&stack);  
+    
+        return 0;
+    }
+    
 
 Output:
+    
+    Stack elements: 40 30 20 10 
+    Popped: 40
+    Stack elements: 30 20 10
 
-//paste your output here
 
 
 Result:
@@ -40,11 +112,86 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    struct Stack {
+        struct Node* top;
+    };
+    
+    void initStack(struct Stack* stack) {
+        stack->top = NULL;
+    }
+    
+    int isEmpty(struct Stack* stack) {
+        return stack->top == NULL;
+    }
+    
+    void push(struct Stack* stack, int value) {
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = value;
+        newNode->next = stack->top;
+        stack->top = newNode;
+    }
+    
+    // Function to pop an element from the stack
+    int pop(struct Stack* stack) {
+        if (isEmpty(stack)) {
+            printf("Stack underflow\n");
+            return -1;  
+        }
+    
+        struct Node* temp = stack->top;
+        int poppedValue = temp->data;
+        stack->top = temp->next;  
+        free(temp);  
+    
+        return poppedValue;
+    }
+    
+    void display(struct Stack* stack) {
+        if (isEmpty(stack)) {
+            printf("Stack is empty\n");
+            return;
+        }
+        struct Node* current = stack->top;
+        printf("Stack elements: ");
+        while (current) {
+            printf("%d ", current->data);
+            current = current->next;
+        }
+        printf("\n");
+    }
+    
+    int main() {
+        struct Stack stack;
+        initStack(&stack);
+    
+        push(&stack, 10);
+        push(&stack, 20);
+        push(&stack, 30);
+        push(&stack, 40);
+    
+        display(&stack);
+    
+        printf("Popped element: %d\n", pop(&stack));
+    
+        display(&stack);
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+
+    Stack elements: 40 30 20 10 
+    Popped element: 40
+    Stack elements: 30 20 10
 
 
 
@@ -64,11 +211,97 @@ Algorithm:
  
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    struct Queue {
+        struct Node* front;
+        struct Node* rear;
+    };
+    
+    void initQueue(struct Queue* queue) {
+        queue->front = NULL;
+        queue->rear = NULL;
+    }
+    
+    int isEmpty(struct Queue* queue) {
+        return queue->front == NULL;
+    }
+    
+    void enqueue(struct Queue* queue, int value) {
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = value;
+        newNode->next = NULL;
+    
+        if (isEmpty(queue)) {
+            queue->front = newNode;
+            queue->rear = newNode;
+        } else {
+            queue->rear->next = newNode;
+            queue->rear = newNode;
+        }
+    }
+    
+    int dequeue(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue underflow\n");
+            return -1; 
+        }
+        struct Node* temp = queue->front;
+        int dequeuedValue = temp->data;
+        queue->front = temp->next;
+        if (queue->front == NULL) {
+            queue->rear = NULL; 
+        }
+        free(temp); // Free the memory of the dequeued node
+        return dequeuedValue;
+    }
+    
+    void display(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue is empty\n");
+            return;
+        }
+        struct Node* current = queue->front;
+        printf("Queue elements: ");
+        while (current) {
+            printf("%d ", current->data);
+            current = current->next;
+        }
+        printf("\n");
+    }
+    
+    int main() {
+        struct Queue queue;
+        initQueue(&queue);
+    
+        enqueue(&queue, 10);
+        enqueue(&queue, 20);
+        enqueue(&queue, 30);
+        enqueue(&queue, 40);
+    
+        display(&queue);
+    
+        printf("Dequeued element: %d\n", dequeue(&queue));
+    
+        display(&queue);
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+    Queue elements: 10 20 30 40 
+    Dequeued element: 10
+    Queue elements: 20 30 40
+
+
 
 Result:
 Thus, the program to display queue elements using linked list is verified successfully.
@@ -89,12 +322,95 @@ Algorithm:
 6.	End of Enqueue Operation
  
 Program:
+    
+    
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    struct Queue {
+        struct Node* front;
+        struct Node* rear;
+    };
+    
+    void initQueue(struct Queue* queue) {
+        queue->front = NULL;
+        queue->rear = NULL;
+    }
+    
+    int isEmpty(struct Queue* queue) {
+        return queue->front == NULL;
+    }
+    
+    void enqueue(struct Queue* queue, int value) {
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = value;
+        newNode->next = NULL;
+    
+        if (isEmpty(queue)) {
+            queue->front = newNode;
+            queue->rear = newNode;
+        } else {
+            queue->rear->next = newNode;
+            queue->rear = newNode;
+        }
+    }
+    
+    void display(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue is empty\n");
+            return;
+        }
+    
+        struct Node* current = queue->front;
+        printf("Queue elements: ");
+        while (current != NULL) {
+            printf("%d ", current->data);
+            current = current->next;
+        }
+        printf("\n");
+    }
+    
+    int dequeue(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue underflow\n");
+            return -1;
+        }
+    
+        struct Node* temp = queue->front;
+        int dequeuedValue = temp->data;
+        queue->front = temp->next;
+        if (queue->front == NULL) {
+            queue->rear = NULL;
+        }
+        free(temp);
+        return dequeuedValue;
+    }
+    
+    int main() {
+        struct Queue queue;
+        initQueue(&queue);
+    
+        enqueue(&queue, 10);
+        enqueue(&queue, 20);
+        enqueue(&queue, 30);
+        enqueue(&queuent: %d\n", dequeue(&queue));
+    
+        display(&queue);
+    
+        return 0;
+    }
 
-//type your code here
 
 Output:
 
-//paste your output here
+    Queue elements: 10 20 30 40 
+    Dequeued element: 10
+    Queue elements: 20 30 40
+
 
 Result:
 Thus, the program to insert elements in queue using linked list is verified successfully.
@@ -117,16 +433,113 @@ o	If the queue is not empty, return the data stored in the front node of the lin
 
 Program:
 
-//type your code here
+    #include <stdio.h>
+    #include <stdlib.h>
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    struct Queue {
+        struct Node* front;
+        struct Node* rear;
+    };
+    
+    void initQueue(struct Queue* queue) {
+        queue->front = NULL;
+        queue->rear = NULL;
+    }
+    
+    int isEmpty(struct Queue* queue) {
+        return queue->front == NULL;
+    }
+    
+    void enqueue(struct Queue* queue, int value) {
+        struct Node* newNode = malloc(sizeof(struct Node));
+        newNode->data = value;
+        newNode->next = NULL;
+    
+        if (isEmpty(queue)) {
+            queue->front = newNode;
+            queue->rear = newNode;
+        } else {
+            queue->rear->next = newNode;
+            queue->rear = newNode;
+        }
+    }
+    
+    void display(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue is empty\n");
+            return;
+        }
+    
+        struct Node* current = queue->front;
+        printf("Queue elements: ");
+        while (current != NULL) {
+            printf("%d ", current->data);
+            current = current->next;
+        }
+        printf("\n");
+    }
+    
+    int dequeue(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue underflow\n");
+            return -1;
+        }
+    
+        struct Node* temp = queue->front;
+        int dequeuedValue = temp->data;
+        queue->front = temp->next;
+        if (queue->front == NULL) {
+            queue->rear = NULL;
+        }
+        free(temp);
+        return dequeuedValue;
+    }
+    
+    int peek(struct Queue* queue) {
+        if (isEmpty(queue)) {
+            printf("Queue is empty\n");
+            return -1;
+        }
+        return queue->front->data;
+    }
+    
+    int main() {
+        struct Queue queue;
+        initQueue(&queue);
+    
+        enqueue(&queue, 10);
+        enqueue(&queue, 20);
+        enqueue(&queue, 30);
+        enqueue(&queue, 40);
+    
+        display(&queue);
+    
+        printf("Peek element: %d\n", peek(&queue));
+    
+        printf("Dequeued element: %d\n", dequeue(&queue));
+    
+        display(&queue);
+    
+        return 0;
+    }
+
 
 Output:
 
-//paste your output here
+
+    Queue elements: 10 20 30 40 
+    Peek element: 10
+    Dequeued element: 10
+    Queue elements: 20 30 40
+
 
 
 
 Result:
 
 Thus, the program to retrieve the "peek" (the front element) of a queue implemented using a linked list is verified successfully.
-
-
