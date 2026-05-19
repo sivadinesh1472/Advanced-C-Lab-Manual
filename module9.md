@@ -12,12 +12,40 @@ Algorithm:
 7.	Use the display function to visualize the stack's contents
  
 Program:
-
-//type your code here
+```
+    #include <stdio.h>
+    #define MAX 5
+    
+    int stack[MAX], top = -1;
+    
+    void push(int value) {
+        if (top < MAX - 1) {
+            stack[++top] = value;
+        }
+    }
+    
+    void display() {
+        for (int i = top; i >= 0; i--) {
+            printf("%d ", stack[i]);
+        }
+        printf("\n");
+    }
+    
+    int main() {
+        push(10);
+        push(20);
+        push(30);
+        push(40);
+        push(50);
+        display();
+        return 0;
+    }
+```
 
 Output:
 
-//paste your output here
+    50 40 30 20 10
+
 
 
 
@@ -35,12 +63,41 @@ Algorithm:
 4.	Call the push function as needed.
  
 Program:
-
-//type your code here
-
+```
+    #include <stdio.h>
+    #define MAX 5
+    
+    int stack[MAX], top = -1;
+    
+    void push(int value) {
+        if (top < MAX - 1) {
+            stack[++top] = value;
+            printf("%d pushed onto stack\n", value);
+        } else {
+            printf("Stack Overflow! Cannot push %d\n", value);
+        }
+    }
+    
+    int main() {
+        push(10);
+        push(20);
+        push(30);
+        push(40);
+        push(50);
+        push(60); 
+        return 0;
+    }
+    
+```
 Output:
 
-//paste your output here
+    10 pushed onto stack
+    20 pushed onto stack
+    30 pushed onto stack
+    40 pushed onto stack
+    50 pushed onto stack
+    Stack Overflow! Cannot push 60
+    
 
 
 
@@ -62,11 +119,59 @@ Algorithm:
  
 Program:
 
-//type your code here
+```
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX], front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear < MAX - 1) {
+            if (front == -1) {
+                front = 0; // If the queue is empty, set front to 0
+            }
+            queue[++rear] = value; 
+            printf("%d enqueued into queue\n", value);
+        } else {
+            printf("Queue Overflow! Cannot enqueue %d\n", value);
+        }
+    }
+    
+    void display() {
+        if (front == -1) {
+            printf("Queue is empty!\n");
+        } else {
+            printf("Queue elements: ");
+            for (int i = front; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+            printf("\n");
+        }
+    }
+    
+    int main() {
+        enqueue(10);
+        enqueue(20);
+        enqueue(30);
+        enqueue(40);
+        enqueue(50);
+        display();  
 
+    enqueue(60); 
+    return 0;
+}
+
+```
 Output:
 
-//paste your output here
+    10 enqueued into queue
+    20 enqueued into queue
+    30 enqueued into queue
+    40 enqueued into queue
+    50 enqueued into queue
+    Queue elements: 10 20 30 40 50
+    Queue Overflow! Cannot enqueue 60
+
 
 
 Result:
@@ -85,12 +190,59 @@ Algorithm:
 4.	Call the enqueue function as needed.
 
 Program:
-
-//type your code here
+```
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX], front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear == MAX - 1) {
+            printf("Queue Overflow! Cannot enqueue %d\n", value);
+        } else {
+            if (front == -1) {
+                front = 0;  
+            }
+            queue[++rear] = value;  
+            printf("%d enqueued into queue\n", value);
+        }
+    }
+    
+    void display() {
+        if (front == -1) {
+            printf("Queue is empty!\n");
+        } else {
+            printf("Queue elements: ");
+            for (int i = front; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+            printf("\n");
+        }
+    }
+    
+    int main() {
+        enqueue(10);  
+        enqueue(20); 
+        enqueue(30); 
+        enqueue(40);  
+        enqueue(50);  
+        display();    
+    
+        enqueue(60);  
+        return 0;
+    }
+```
 
 Output:
 
-//paste your output here
+    10 enqueued into queue
+    20 enqueued into queue
+    30 enqueued into queue
+    40 enqueued into queue
+    50 enqueued into queue
+    Queue elements: 10 20 30 40 50
+    Queue Overflow! Cannot enqueue 60
+
 
 Result:
 Thus, the program to insert elements in queue using array is verified successfully.
@@ -120,12 +272,76 @@ o	After deletion, check if the front pointer has passed the rear pointer (front 
 
 
 Program:
-
-//type your code here
+```
+    #include <stdio.h>
+    #define MAX 5
+    
+    int queue[MAX], front = -1, rear = -1;
+    
+    void enqueue(int value) {
+        if (rear == MAX - 1) {
+            printf("Queue Overflow! Cannot enqueue %d\n", value);
+        } else {
+            if (front == -1) {
+                front = 0;   
+            }
+            queue[++rear] = value;  
+            printf("%d enqueued into queue\n", value);
+        }
+    }
+    
+    void dequeue() {
+        if (front == -1 || front > rear) {
+            printf("Queue Underflow! Queue is empty\n");
+        } else {
+            printf("%d dequeued from queue\n", queue[front]);
+            front++;  
+        }
+    }
+    
+    void display() {
+        if (front == -1 || front > rear) {
+            printf("Queue is empty!\n");
+        } else {
+            printf("Queue elements: ");
+            for (int i = front; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+            printf("\n");
+        }
+    }
+    
+    int main() {
+        enqueue(10);   
+        enqueue(20);   
+        enqueue(30);   
+        enqueue(40);            
+        enqueue(50);  
+        display();   
+    
+        dequeue();   
+        display();    
+    
+        dequeue();   
+        display();    
+    
+        return 0;
+    }
+```
 
 Output:
 
-//paste your output here
+
+    10 enqueued into queue
+    20 enqueued into queue
+    30 enqueued into queue
+    40 enqueued into queue
+    50 enqueued into queue
+    Queue elements: 10 20 30 40 50
+    10 dequeued from queue
+    Queue elements: 20 30 40 50
+    20 dequeued from queue
+    Queue elements: 30 40 50
 
 
 Result:
