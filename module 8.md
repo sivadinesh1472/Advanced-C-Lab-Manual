@@ -15,16 +15,38 @@ Algorithm:
 4.	Exit the program.
  
 Program:
+```
+    #include <stdio.h>
+    
+    int main() {
+        int num;
+        printf("Enter a number between 1 and 9: ");
+        scanf("%d", &num);
 
-//type your code here
+    switch(num) {
+        case 1: printf("one\n"); break;
+        case 2: printf("two\n"); break;
+        case 3: printf("three\n"); break;
+        case 4: printf("four\n"); break;
+        case 5: printf("five\n"); break;
+        case 6: printf("six\n"); break;
+        case 7: printf("seven\n"); break;
+        case 8: printf("eight\n"); break;
+        case 9: printf("nine\n"); break;
+        default: printf("Invalid number!\n");
+    }
+    return 0;
+}
 
 
+```
 
 
 Output:
 
 
-//paste your output here
+    Enter a number between 1 and 9: 3
+    
 
 
 
@@ -46,17 +68,40 @@ Algorithm:
 6.	End
  
 Program:
+```
 
-//type your code here
+    #include <stdio.h>
+    
+    int main() {
+        int num, count[4] = {0};  
+
+    printf("Enter an integer: ");
+    scanf("%d", &num);
+
+    while (num != 0) {
+        int digit = num % 10;  // Extract the last digit
+        if (digit >= 0 && digit <= 3) {
+            count[digit]++; 
+        }
+        num /= 10;  
+    }
+
+    for (int i = 0; i < 4; i++) {
+        printf("%d ", count[i]);
+    }
+
+    return 0;
+}
 
 
-
+```
 
 Output:
 
 
-//paste your output here
 
+
+    Enter an integer: 123312
 
 
 
@@ -83,16 +128,62 @@ Free the memory allocated for each string in s Free the memory allocated for s
 7.	End
  
 Program:
+```
 
-//type your code here
+    #include <stdio.h>
+    #include <string.h>
+    #include <stdlib.h>
+    
+    int compare(const void *a, const void *b) {
+        return (*(char *)a - *(char *)b);
+    }
+    
+    void permute(char str[], int l, int r) {
+        if (l == r) {
+            printf("%s\n", str);  // Print the permutation
+            return;
+        }
+        for (int i = l; i <= r; i++) {
+            swap(&str[l], &str[i]);
+            permute(str, l + 1, r); 
+            swap(&str[l], &str[i]); 
+        }
+    }
+    
+    
+    void swap(char *x, char *y) {
+        char temp = *x;
+        *x = *y;
+        *y = temp;
+    }
+    
+    int main() {
+        char str[100];
+        printf("Enter a string: ");
+        scanf("%s", str);
 
+   
+    qsort(str, strlen(str), sizeof(char), compare);
+    
+   
+    permute(str, 0, strlen(str) - 1);
+
+    return 0;
+}
+
+```
 
 
 
 Output:
 
 
-//paste your output here
+    abc
+    acb
+    bac
+    bca
+    cab
+    cba
 
 
 
@@ -116,8 +207,22 @@ Algorithm:
 7.	End
  
 Program:
-
-//type your code here
+ ```   
+    #include <stdio.h>
+    
+    int main() {
+        int n;
+        scanf("%d", &n);
+    
+        for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
 
 
 
@@ -125,7 +230,12 @@ Program:
 Output:
 
 
-//paste your output here
+    1
+    12
+    123
+    1234
+    12345
+
 
 
 
@@ -155,16 +265,27 @@ o	Call the square() function and display the result.
 5.	End.
 
 Program:
+```
 
-//type your code here
+#include <stdio.h>
 
+int square() {
+    return 5 * 5;  
+}
 
+int main() {
+    printf("%d\n", square());
+    return 0;
+}
+
+```
 
 
 Output:
 
 
-//paste your output here
+    25
+
 
 
 
@@ -173,30 +294,3 @@ Output:
 
 Result:
 Thus, the program is verified successfully
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
